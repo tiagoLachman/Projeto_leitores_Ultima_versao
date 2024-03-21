@@ -692,6 +692,7 @@ void LeituraMaquina()
   }
 }
 
+
 void setup()
 {
 
@@ -709,7 +710,7 @@ void setup()
   Serial.println("############################");
 
   rtc.begin();              // Inicia o RTC
-  setSyncProvider(RTC.get()); // the function to get the time from the RTC
+  setSyncProvider((getExternalTime)RTC.get()); // the function to get the time from the RTC
 
   Serial.println();
 
@@ -1510,7 +1511,7 @@ void handleSketchDownload()
 void loop()
 {
   // watchdog.reset();
-  char cLinha = "";
+  char cLinha = (char)"";
 
   client = server.available(); // Tenta pegar uma conexão com o cliente (Browser)
   //Serial.println(client);
@@ -1575,7 +1576,7 @@ void loop()
 
               // rtc.getDate(nAno, nMes, nDia, W);
               rtc.setDate(nAno, nMes, nDia);
-              setSyncProvider(RTC.get());
+              setSyncProvider((getExternalTime)RTC.get());
               RTC.set(now());
 
               Serial.println("");
@@ -1648,7 +1649,7 @@ void loop()
 
               // rtc.getTime(nHora, nMin, nSec);
               rtc.setTime(nHora, nMin, nSec);
-              setSyncProvider(RTC.get());
+              setSyncProvider((getExternalTime)RTC.get());
               RTC.set(now());
 
               Serial.println("");
